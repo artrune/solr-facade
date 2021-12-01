@@ -28,22 +28,12 @@ request_object = {
     "url" : {
       "type": "terms",
       "field": "url",
-      "limit": 155
+      "limit": 10
     },
-    "low_size": {
-        "type": "query",
-        "q": "size:[0 TO 50]",
-        "limit": 15
-    },
-     "med_size": {
-        "type": "query",
-        "q": "size:[50 TO 500]",
-        "limit": 15
-    },
-     "high_size": {
-        "type": "query",
-        "q": "size:[500 TO *]",
-        "limit": 15
+    "size":{
+      "type": "terms",
+      "field": "size",
+      "limit": 300
     }
   }
 }
