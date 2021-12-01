@@ -81,10 +81,10 @@ def get_clean_query(q):
     clean_query = ""
     for token in tokens:
         word = str(token)
-        if word is not 'not' or word is not 'and' or word is not 'or':
+        if word != 'not' and word != 'and' and word != 'or':
             clean_query = clean_query + word + '~ '
         else:
-            clean_query = clean_query + word
+            clean_query = clean_query + word + ' '
 
     if len(tokens) == 0:
         clean_query = '*:*'
