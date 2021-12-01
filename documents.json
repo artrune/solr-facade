@@ -1,0 +1,34 @@
+{
+    "_title": "Tale of good guy",
+    "title": "Tale of good guy",
+    "_text_": "Hello I'm a good guy, perhaps",
+    "text": "Hello I'm a good guy, perhaps",
+    "url": "goodguys.com",
+    "base_url": "goodguy.com",
+    "_snippet_": "a good guy was somewhat good",
+    "size": "100"
+}
+
+
+{
+    "_title": "Tale of bad guy",
+    "title": "Tale of bad guy",
+    "_text_": "Hello I'm a bad guy, perhaps",
+    "text": "Hello I'm a bad guy, perhaps",
+    "url": "badguy.com",
+    "base_url": "badguy.com",
+    "_snippet_": "a good guy was somewhat bad",
+    "size": "50"
+}
+
+
+{
+    "_title": "Tale of almost good guy",
+    "title": "Tale of almost good guy",
+    "_text_": "Hello I'm a almost good guy, perhaps",
+    "text": "Hello I'm a almost good guy, perhaps",
+    "url": "goodguys.com",
+    "base_url": "goodguy.com",
+    "_snippet_": "a good guy was almost somewhat good",
+    "size": "75"
+}
