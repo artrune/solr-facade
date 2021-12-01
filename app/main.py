@@ -50,7 +50,7 @@ async def query_endpoint(q:str):
         fuzzy_query = get_clean_query(q)
         second_response = requests.post(f"http://{solr_host}:8983/solr/mycore/query{params}", headers=headers ,data=json.dumps(request_object).replace("query_replacement", fuzzy_query))
         second_response_json = second_response.json()
-        return {"results": [first_response_json,second_response_json]}
+        return {"results": [second_response_json]}
 
     except BaseException as ex:
         return []
