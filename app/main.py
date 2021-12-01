@@ -77,9 +77,15 @@ def get_clean_query(q):
     tokens = [word for word in tokens if word.isalpha()]
     #Remove white spaces and StopWords
     tokens = [word for word in tokens if not word in stopwords.words("spanish")]
-    clean_query = '~ '.join(tokens)
-    if len(tokens) == 1:
-        clean_query = clean_query + '~'
+    
+    clean_query = ""
+    for token in tokens:
+        word = str(token)
+        if word is not 'not' or word is not 'and' or word is not 'or':
+            clean_query = clean_query + word + '~ '
+        else:
+            clean_query = clean_query + word
+
     if len(tokens) == 0:
         clean_query = '*:*'
     return clean_query
