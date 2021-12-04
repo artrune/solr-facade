@@ -27,7 +27,7 @@ request_object = {
   "facet": {
     "url" : {
       "type": "terms",
-      "field": "url",
+      "field": "base_url",
       "limit": 10
     },
     "size":{
