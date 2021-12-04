@@ -33,7 +33,7 @@ request_object = {
     "size":{
       "type": "terms",
       "field": "size",
-      "limit": 300
+      "limit": 3000
     }
   }
 }
