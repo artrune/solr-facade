@@ -1,6 +1,7 @@
 import os
 import json
 
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI
 from pydantic import BaseModel
 import uvicorn, requests
@@ -9,6 +10,13 @@ from nltk import word_tokenize
 from nltk.corpus import stopwords
 
 app = FastAPI(docs_url="/")
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 solr_host = os.getenv("SOLR_HOST", "host.docker.internal")
 title_weight_multiplier = os.getenv("ROWS", 20)
