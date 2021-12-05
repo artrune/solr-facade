@@ -63,6 +63,14 @@ async def query_endpoint(q:str):
     except BaseException as ex:
         return []
 
+@app.get("/suggest")
+async def suggest_endpoint(q:str):
+    try:
+        suggest_response = requests.get(f"http://{solr_host}:8983/solr/mycore/suggest?suggest=true&suggest.build=true&suggest.dictionary=mySuggester&wt=json&suggest.q={q}") 
+        suggest_json = suggest_response.json()
+        return {"results": suggest_json}   
+    except BaseException as ex:
+        return []
 
 def get_clean_query(q):
     #lower case
