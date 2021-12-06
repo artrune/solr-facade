@@ -1,6 +1,6 @@
 import os
 import json
-
+import traceback
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI
 from pydantic import BaseModel
@@ -50,23 +50,23 @@ request_object = {
 @app.get("/query")
 async def query_endpoint(q:str):
     try:
-        first_response = requests.post(f"http://{solr_host}:8983/solr/mycore/query{params}", headers=headers ,data=json.dumps(request_object).replace("query_replacement", q))
+        first_response = requests.post(f"http://{solr_host}:8983/solr/mycore/query{params}", headers=headers ,data=json.dumps(request_object).replace("query_replacement", q).encode('utf-8'))
         first_response_json = first_response.json()
         if first_response_json['response']['numFound'] > 0:
             return {"results": [first_response_json]}
         
         fuzzy_query = get_clean_query(q)
-        second_response = requests.post(f"http://{solr_host}:8983/solr/mycore/query{params}", headers=headers ,data=json.dumps(request_object).replace("query_replacement", fuzzy_query))
+        second_response = requests.post(f"http://{solr_host}:8983/solr/mycore/query{params}", headers=headers ,data=json.dumps(request_object).replace("query_replacement", fuzzy_query).encode('utf-8'))
         second_response_json = second_response.json()
         return {"results": [second_response_json]}
 
     except BaseException as ex:
-        return []
+        return {"results": [traceback.format_exc()]}
 
 @app.get("/suggest")
 async def suggest_endpoint(q:str):
     try:
-        suggest_response = requests.get(f"http://{solr_host}:8983/solr/mycore/suggest?suggest=true&suggest.build=true&suggest.dictionary=mySuggester&wt=json&suggest.q={q}") 
+        suggest_response = requests.get(f"http://{solr_host}:8983/solr/mycore/suggest?suggest=true&suggest.build=true&suggest.dictionary=mySuggester&wt=json&suggest.q={q}".encode('utf-8')) 
         suggest_json = suggest_response.json()
         return {"results": suggest_json}   
     except BaseException as ex:
